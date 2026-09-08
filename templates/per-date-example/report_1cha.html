@@ -1,0 +1,356 @@
+<title>9월 1차 지급 보고 · 9/10</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  :root{
+    --bg:#eef1f5;
+    --surface:#ffffff;
+    --ink:#182233;
+    --ink-soft:#4b5768;
+    --muted:#8791a3;
+    --line:#e2e6ec;
+    --line-strong:#c9d0dc;
+    --accent:#17395c;
+    --accent-ink:#0f273f;
+    --accent-soft:#e9f0f6;
+    --bad:#a3261e;
+    --bad-soft:#fbeceb;
+    --bad-line:#eccdc9;
+    --row-alt:#f7f8fa;
+    --mat:#17395c;
+    --out:#3f8f78;
+  }
+  /* fixed light palette — always bright regardless of viewer's system theme,
+     so it looks the same whether pasted into a doc/email or opened as a file */
+
+  *{ box-sizing:border-box; }
+  body{
+    color-scheme:light;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    padding:40px 16px 64px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:48px 40px 44px;
+  }
+
+  /* header */
+  .meta-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:12.5px; color:var(--muted); margin-bottom:10px;
+    letter-spacing:.02em;
+  }
+  h1{
+    font-family:'Noto Serif KR', serif;
+    font-weight:900;
+    font-size:29px;
+    letter-spacing:-.01em;
+    margin:0 0 6px;
+    text-wrap:balance;
+  }
+  .subtitle{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 26px;
+  }
+
+  /* headline callout */
+  .headline{
+    display:flex;
+    gap:16px;
+    border-left:5px solid var(--accent);
+    background:var(--accent-soft);
+    border-radius:2px;
+    padding:20px 24px;
+    margin-bottom:28px;
+  }
+  .headline-body{ flex:1; min-width:0; }
+  .headline-lead{
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink);
+  }
+  .headline-lead b{
+    font-size:22px;
+    font-weight:900;
+    color:var(--accent-ink);
+    margin:0 2px;
+  }
+  .headline-sub{
+    margin-top:8px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .headline-sub .div{ color:var(--line-strong); margin:0 8px; }
+
+  /* stat cards */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    margin-bottom:36px;
+  }
+  .stat{
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:16px 18px;
+    background:var(--surface);
+  }
+  .stat.warn{
+    background:var(--bad-soft);
+    border-color:var(--bad-line);
+  }
+  .stat-label{
+    font-size:12px;
+    font-weight:700;
+    color:var(--muted);
+    letter-spacing:.02em;
+    margin-bottom:8px;
+  }
+  .stat.warn .stat-label{ color:var(--bad); }
+  .stat-value{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-.01em;
+    line-height:1.25;
+  }
+  .stat.warn .stat-value{ color:var(--bad); }
+  .stat-value small{ font-size:13px; font-weight:700; margin-left:2px; }
+  .stat-foot{
+    margin-top:7px;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .stat.warn .stat-foot{ color:var(--bad); }
+
+  /* sections */
+  section{ margin-bottom:34px; }
+  section:last-child{ margin-bottom:0; }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    justify-content:space-between;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:8px;
+    margin-bottom:2px;
+  }
+  .sec-title{
+    font-size:15px;
+    font-weight:900;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .sec-title .no{
+    font-size:12.5px;
+    font-weight:900;
+    color:var(--accent);
+  }
+  .sec-note{
+    font-size:11.5px;
+    color:var(--muted);
+  }
+  .composition{ margin:10px 0 16px; }
+  .comp-bar{
+    display:flex;
+    width:100%;
+    height:10px;
+    border-radius:5px;
+    overflow:hidden;
+    background:var(--line);
+  }
+  .comp-seg.mat{ background:var(--mat); }
+  .comp-seg.out{ background:var(--out); }
+  .comp-legend{
+    display:flex;
+    gap:20px;
+    margin-top:7px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .comp-legend .dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    margin-right:6px;
+  }
+  .comp-legend .dot.mat{ background:var(--mat); }
+  .comp-legend .dot.out{ background:var(--out); }
+  .comp-legend b{ color:var(--ink); font-weight:900; }
+
+  .tablewrap{ overflow-x:auto; }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+  }
+  thead th{
+    text-align:right;
+    font-weight:700;
+    color:var(--ink-soft);
+    font-size:12px;
+    padding:9px 10px;
+    border-bottom:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  thead th:nth-child(-n+4){ text-align:left; }
+  thead th:nth-child(4){ text-align:center; }
+  tbody td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    text-align:right;
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  table.dense{ font-size:11.5px; table-layout:fixed; }
+  table.dense th, table.dense td{ padding:6px 7px; }
+  table.dense .proj{ font-size:11px; }
+  tbody tr:nth-child(even){ background:var(--row-alt); }
+  tbody tr.flag{ background:var(--bad-soft); }
+  tbody tr.flag td{ border-bottom-color:var(--bad-line); }
+  tbody tr.subtotal td{
+    background:var(--accent-soft);
+    font-weight:700;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+  }
+  tbody td[rowspan]{ vertical-align:top; border-right:1px solid var(--line); }
+  tbody tr.grp-start td{ border-top:2px solid var(--line-strong); }
+  tbody tr.grp-start:first-child td{ border-top:none; }
+  /* text-align exceptions are keyed to classes, never DOM column position --
+     rowspan continuation rows drop the vendor <td>, which shifts nth-child position */
+  .vendor, .proj{
+    text-align:left !important;
+    white-space:normal !important;
+    word-break:keep-all;
+    font-variant-numeric:normal;
+  }
+  .proj{ color:var(--ink-soft); font-size:12.3px; }
+  .vendor{ font-weight:700; }
+  .tag{ text-align:center !important; color:var(--ink-soft); white-space:nowrap; }
+  .person{ text-align:center !important; color:var(--muted); white-space:nowrap; }
+  tfoot td{
+    padding:11px 10px;
+    font-weight:900;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    background:var(--accent-soft);
+    text-align:right;
+  }
+  tfoot td:first-child{ text-align:left; }
+  .pct{ color:var(--muted); font-size:12.3px; }
+  .badge{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 7px;
+    border-radius:20px;
+    background:var(--bad);
+    color:var(--surface);
+    white-space:nowrap;
+  }
+  .rate{ font-weight:700; }
+  .rate.low{ color:var(--bad); }
+
+  .footnote{
+    margin-top:10px;
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  @media print{
+    body{ padding:0; background:#fff; }
+    .sheet{ border:none; border-radius:0; max-width:none; padding:28px 34px; }
+    thead{ display:table-header-group; }
+    tr{ break-inside:avoid; page-break-inside:avoid; }
+    section{ break-inside:avoid-page; }
+    .stats, .headline{ break-inside:avoid; }
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="meta-row">
+    <span>외주비 / 재료비 지급 보고 · 1차</span>
+    <span>작성일 2026-09-08</span>
+  </div>
+  <h1>2026년 9월 외주비·재료비 지급 보고 (1차)</h1>
+  <p class="subtitle">지급일 2026-09-10(목)</p>
+
+  <div class="headline">
+    <div class="headline-body">
+      <div class="headline-lead">
+        1차(9/10) 외주비·재료비 지급액 <b>903,386,146원</b>을 집행 예정
+      </div>
+      <div class="headline-sub">
+        매입처 5개사 · 5건<span class="div">|</span>재료비 763,290,000원(84.5%) · 외주비 140,096,146원(15.5%)
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">당월 지급합계 (VAT포함)</div>
+      <div class="stat-value">903,386,146<small>원</small></div>
+      <div class="stat-foot">공급가액 821,260,133원 + VAT 82,126,013원</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">매입처</div>
+      <div class="stat-value">5개사<small>· 5건</small></div>
+      <div class="stat-foot">1개 매입처당 1개 프로젝트</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">최대 지급처</div>
+      <div class="stat-value">헤이즐시스<small></small></div>
+      <div class="stat-foot">763,290,000원 · 전체의 84.5%</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-title">매입현황 · 1차 2026-09-10(목)</div>
+      <div class="sec-note">매입처 5개사 · 5건</div>
+    </div>
+    <div class="composition">
+      <div class="comp-bar"><div class="comp-seg mat" style="width:84.5%"></div><div class="comp-seg out" style="width:15.5%"></div></div>
+      <div class="comp-legend">
+        <span><span class="dot mat"></span>재료비 <b>763,290,000원</b> (84.5%)</span>
+        <span><span class="dot out"></span>외주비 <b>140,096,146원</b> (15.5%)</span>
+      </div>
+    </div>
+    <div class="tablewrap">
+    <table class="dense">
+      <colgroup>
+        <col style="width:13%"><col style="width:6%"><col style="width:6%"><col style="width:20%">
+        <col style="width:10%"><col style="width:10%"><col style="width:5%"><col style="width:10%">
+        <col style="width:10%"><col style="width:10%">
+      </colgroup>
+      <thead>
+        <tr><th>매입처</th><th>구분</th><th>투입정보</th><th>프로젝트명</th><th>계약금액</th><th>당월지급액</th><th>지급률</th><th>VAT</th><th>실지급액</th><th>잔액</th></tr>
+      </thead>
+      <tbody>
+        <tr class="grp-start"><td class="vendor">곰소프트</td><td class="tag">외주비</td><td class="person">이승환</td><td class="proj">삼성SDI 2026년 내재화 시스템 운영</td><td>97,200,000</td><td>8,100,000</td><td class="pct">67%</td><td>810,000</td><td>8,910,000</td><td>32,400,000</td></tr>
+        <tr class="grp-start"><td class="vendor">㈜에스오피레이크</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">피플웍스 미국공장 ESS Pack/LINK라인 MES 시스템 운영</td><td>673,180,800</td><td>112,196,800</td><td class="pct">78%</td><td>11,219,680</td><td>123,416,480</td><td>142,060,000</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 아이웍스</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>12,000,000</td><td>1,000,000</td><td class="pct">25%</td><td>100,000</td><td>1,100,000</td><td>9,000,000</td></tr>
+        <tr class="grp-start"><td class="vendor">신일전산(주)</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>72,760,000</td><td>6,063,333</td><td class="pct">24%</td><td>606,333</td><td>6,669,666</td><td>54,570,001</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 헤이즐시스</td><td class="tag">재료비</td><td class="person">기타</td><td class="proj">서진시스템 AT공장 ESS Pack라인 MES 시스템 구축(1차)</td><td>771,000,000</td><td>693,900,000</td><td class="pct">100%</td><td>69,390,000</td><td>763,290,000</td><td>-</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="5">합계</td><td>821,260,133</td><td></td><td>82,126,013</td><td>903,386,146</td><td>238,030,001</td></tr>
+      </tfoot>
+    </table>
+    </div>
+    <div class="footnote">재료비·외주비 구성비는 외주비(T)를 외주비에 합산한 기준입니다.</div>
+  </section>
+
+</div>
