@@ -33,12 +33,12 @@
     font-variant-numeric: tabular-nums;
   }
   .sheet{
-    max-width:980px;
+    max-width:860px;
     margin:0 auto;
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:4px;
-    padding:48px 40px 44px;
+    padding:48px 32px 44px;
   }
 
   /* header */
@@ -212,7 +212,7 @@
     font-variant-numeric:tabular-nums;
   }
   table.dense{ font-size:11.5px; table-layout:fixed; }
-  table.dense th, table.dense td{ padding:6px 7px; }
+  table.dense th, table.dense td{ padding:6px 4px; }
   table.dense .proj{ font-size:11px; }
   tbody tr:nth-child(even){ background:var(--row-alt); }
   tbody tr.flag{ background:var(--bad-soft); }
@@ -248,7 +248,8 @@
     text-align:right;
   }
   tfoot td:first-child{ text-align:left; }
-  .pct{ color:var(--muted); font-size:12.3px; text-align:center !important; padding-left:22px !important; }
+  .pct{ color:var(--muted); font-size:12.3px; text-align:center !important; padding-left:17.16px !important; }
+  .real{ text-align:center !important; padding-left:5.52px !important; }
   .badge{
     display:inline-block;
     font-size:11px;
@@ -271,7 +272,7 @@
 
   @media print{
     body{ padding:0; background:#fff; }
-    .sheet{ border:none; border-radius:0; max-width:none; padding:16px 34px; }
+    .sheet{ border:none; border-radius:0; max-width:860px; margin:0 auto; padding:16px 32px; }
     thead{ display:table-header-group; }
     tr{ break-inside:avoid; page-break-inside:avoid; }
     section{ break-inside:avoid-page; }
@@ -312,21 +313,21 @@
     <div class="tablewrap">
     <table class="dense">
       <colgroup>
-        <col style="width:15.5%"><col style="width:8%"><col style="width:38%">
-        <col style="width:10%"><col style="width:13.5%"><col style="width:15%">
+        <col style="width:14.65%"><col style="width:7.30%"><col style="width:42.03%">
+        <col style="width:9.19%"><col style="width:12.77%"><col style="width:14.07%">
       </colgroup>
       <thead>
         <tr><th>매입처</th><th>구분</th><th>프로젝트명</th><th>당월지급액</th><th>지급률(당월포함)</th><th>실지급액(VAT포함)</th></tr>
       </thead>
       <tbody>
-        <tr class="grp-start"><td class="vendor">곰소프트</td><td class="tag">외주비</td><td class="proj">삼성SDI 2026년 내재화 시스템 운영</td><td>8,100,000</td><td class="pct">67%</td><td>8,910,000</td></tr>
-        <tr class="grp-start"><td class="vendor">㈜에스오피레이크</td><td class="tag">외주비(T)</td><td class="proj">피플웍스 미국공장 ESS Pack/LINK라인 MES 시스템 운영</td><td>112,196,800</td><td class="pct">78%</td><td>123,416,480</td></tr>
-        <tr class="grp-start"><td class="vendor">주식회사 아이웍스</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>1,000,000</td><td class="pct">25%</td><td>1,100,000</td></tr>
-        <tr class="grp-start"><td class="vendor">신일전산(주)</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>6,063,333</td><td class="pct">24%</td><td>6,669,666</td></tr>
-        <tr class="grp-start"><td class="vendor">주식회사 헤이즐시스</td><td class="tag">재료비</td><td class="proj">서진시스템 AT공장 ESS Pack라인 MES 시스템 구축(1차)</td><td>693,900,000</td><td class="pct">100%</td><td>763,290,000</td></tr>
+        <tr class="grp-start"><td class="vendor">곰소프트</td><td class="tag">외주비</td><td class="proj">삼성SDI 2026년 내재화 시스템 운영</td><td>8,100,000</td><td class="pct">67%</td><td class="real">8,910,000</td></tr>
+        <tr class="grp-start"><td class="vendor">㈜에스오피레이크</td><td class="tag">외주비(T)</td><td class="proj">피플웍스 미국공장 ESS Pack/LINK라인 MES 시스템 운영</td><td>112,196,800</td><td class="pct">78%</td><td class="real">123,416,480</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 아이웍스</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>1,000,000</td><td class="pct">25%</td><td class="real">1,100,000</td></tr>
+        <tr class="grp-start"><td class="vendor">신일전산(주)</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>6,063,333</td><td class="pct">24%</td><td class="real">6,669,666</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 헤이즐시스</td><td class="tag">재료비</td><td class="proj">서진시스템 AT공장 ESS Pack라인 MES 시스템 구축(1차)</td><td>693,900,000</td><td class="pct">100%</td><td class="real">763,290,000</td></tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="3">합계</td><td>821,260,133</td><td></td><td>903,386,146</td></tr>
+        <tr><td colspan="3">합계</td><td>821,260,133</td><td></td><td class="real">903,386,146</td></tr>
       </tfoot>
     </table>
     </div>

@@ -33,62 +33,13 @@
     font-variant-numeric: tabular-nums;
   }
   .sheet{
-    max-width:980px;
+    max-width:860px;
     margin:0 auto;
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:4px;
-    padding:48px 40px 44px;
+    padding:48px 32px 44px;
   }
-
-  /* header */
-  .meta-row{
-    display:flex; justify-content:space-between; align-items:baseline;
-    font-size:12.5px; color:var(--muted); margin-bottom:10px;
-    letter-spacing:.02em;
-  }
-  h1{
-    font-family:'Noto Serif KR', serif;
-    font-weight:900;
-    font-size:29px;
-    letter-spacing:-.01em;
-    margin:0 0 6px;
-    text-wrap:balance;
-  }
-  .subtitle{
-    font-size:13.5px;
-    color:var(--ink-soft);
-    margin:0 0 26px;
-  }
-
-  /* headline callout */
-  .headline{
-    display:flex;
-    gap:16px;
-    border-left:5px solid var(--accent);
-    background:var(--accent-soft);
-    border-radius:2px;
-    padding:20px 24px;
-    margin-bottom:28px;
-  }
-  .headline-body{ flex:1; min-width:0; }
-  .headline-lead{
-    font-size:15px;
-    line-height:1.55;
-    color:var(--ink);
-  }
-  .headline-lead b{
-    font-size:22px;
-    font-weight:900;
-    color:var(--accent-ink);
-    margin:0 2px;
-  }
-  .headline-sub{
-    margin-top:8px;
-    font-size:13px;
-    color:var(--ink-soft);
-  }
-  .headline-sub .div{ color:var(--line-strong); margin:0 8px; }
 
   /* stat cards */
   .stats{
@@ -133,31 +84,6 @@
   /* sections */
   section{ margin-bottom:34px; }
   section:last-child{ margin-bottom:0; }
-  .sec-head{
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-    justify-content:space-between;
-    border-bottom:2px solid var(--ink);
-    padding-bottom:8px;
-    margin-bottom:2px;
-  }
-  .sec-title{
-    font-size:15px;
-    font-weight:900;
-    display:flex;
-    align-items:baseline;
-    gap:8px;
-  }
-  .sec-title .no{
-    font-size:12.5px;
-    font-weight:900;
-    color:var(--accent);
-  }
-  .sec-note{
-    font-size:11.5px;
-    color:var(--muted);
-  }
   .composition{ margin:10px 0 16px; }
   .comp-bar{
     display:flex;
@@ -199,10 +125,11 @@
     font-size:12px;
     padding:9px 10px;
     border-bottom:1px solid var(--line-strong);
-    white-space:nowrap;
+    white-space:normal;
+    word-break:keep-all;
   }
-  thead th:nth-child(-n+4){ text-align:left; }
-  thead th:nth-child(4){ text-align:center; }
+  thead th:nth-child(-n+3){ text-align:left; }
+  thead th:nth-child(2), thead th:nth-child(3){ text-align:center; }
   tbody td{
     padding:9px 10px;
     border-bottom:1px solid var(--line);
@@ -211,18 +138,11 @@
     font-variant-numeric:tabular-nums;
   }
   table.dense{ font-size:11.5px; table-layout:fixed; }
-  table.dense th, table.dense td{ padding:6px 7px; }
+  table.dense th, table.dense td{ padding:6px 4px; }
   table.dense .proj{ font-size:11px; }
   tbody tr:nth-child(even){ background:var(--row-alt); }
   tbody tr.flag{ background:var(--bad-soft); }
   tbody tr.flag td{ border-bottom-color:var(--bad-line); }
-  tbody tr.subtotal td{
-    background:var(--accent-soft);
-    font-weight:700;
-    color:var(--ink-soft);
-    border-top:1px solid var(--line-strong);
-    border-bottom:1px solid var(--line-strong);
-  }
   tbody td[rowspan]{ vertical-align:top; border-right:1px solid var(--line); }
   tbody tr.grp-start td{ border-top:2px solid var(--line-strong); }
   tbody tr.grp-start:first-child td{ border-top:none; }
@@ -234,10 +154,9 @@
     word-break:keep-all;
     font-variant-numeric:normal;
   }
-  .proj{ color:var(--ink-soft); font-size:12.3px; }
+  .proj{ color:var(--ink-soft); font-size:11px; padding-left:44px !important; }
   .vendor{ font-weight:700; }
   .tag{ text-align:center !important; color:var(--ink-soft); white-space:nowrap; }
-  .person{ text-align:center !important; color:var(--muted); white-space:nowrap; }
   tfoot td{
     padding:11px 10px;
     font-weight:900;
@@ -247,19 +166,8 @@
     text-align:right;
   }
   tfoot td:first-child{ text-align:left; }
-  .pct{ color:var(--muted); font-size:12.3px; }
-  .badge{
-    display:inline-block;
-    font-size:11px;
-    font-weight:700;
-    padding:2px 7px;
-    border-radius:20px;
-    background:var(--bad);
-    color:var(--surface);
-    white-space:nowrap;
-  }
-  .rate{ font-weight:700; }
-  .rate.low{ color:var(--bad); }
+  .pct{ color:var(--muted); font-size:12.3px; text-align:center !important; padding-left:16.53px !important; }
+  .real{ text-align:center !important; padding-left:4.81px !important; }
 
   .footnote{
     margin-top:10px;
@@ -270,57 +178,31 @@
 
   @media print{
     body{ padding:0; background:#fff; }
-    .sheet{ border:none; border-radius:0; max-width:none; padding:28px 34px; }
+    .sheet{ border:none; border-radius:0; max-width:860px; margin:0 auto; padding:16px 32px; }
     thead{ display:table-header-group; }
     tr{ break-inside:avoid; page-break-inside:avoid; }
     section{ break-inside:avoid-page; }
-    .stats, .headline{ break-inside:avoid; }
+    .stats{ break-inside:avoid; }
+    .stats{ margin-bottom:16px; gap:10px; }
+    .stat{ padding:10px 14px; }
+    .stat-label{ margin-bottom:4px; }
+    .stat-foot{ margin-top:4px; }
+    section{ margin-bottom:16px; }
+    .composition{ margin:6px 0 10px; }
   }
 </style>
 
 <div class="sheet">
 
-  <div class="meta-row">
-    <span>외주비 / 재료비 지급 보고 · 2차</span>
-    <span>작성일 2026-09-08</span>
-  </div>
-  <h1>2026년 9월 외주비·재료비 지급 보고 (2차)</h1>
-  <p class="subtitle">지급일 2026-09-30(수)</p>
-
-  <div class="headline">
-    <div class="headline-body">
-      <div class="headline-lead">
-        2차(9/30) 외주비·재료비 지급액 <b>281,226,000원</b>을 집행 예정
-      </div>
-      <div class="headline-sub">
-        매입처 8개사 · 19건<span class="div">|</span>재료비 14,080,000원(5.0%) · 외주비 267,146,000원(95.0%)<span class="div">|</span>매출 회수 미확인 3건 확인 필요
-      </div>
-    </div>
-  </div>
-
-  <div class="stats">
+  <div class="stats" style="grid-template-columns:max-content; justify-content:start;">
     <div class="stat">
-      <div class="stat-label">당월 지급합계 (VAT포함)</div>
+      <div class="stat-label">2차 지급 · 9/30(수)</div>
       <div class="stat-value">281,226,000<small>원</small></div>
-      <div class="stat-foot">공급가액 255,660,000원 + VAT 25,566,000원</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">매입처</div>
-      <div class="stat-value">8개사<small>· 19건</small></div>
-      <div class="stat-foot">최대 온시스템즈 7건</div>
-    </div>
-    <div class="stat warn">
-      <div class="stat-label">매출 회수 미확인</div>
-      <div class="stat-value">3건 · 139,480,000<small>원</small></div>
-      <div class="stat-foot">회수 확인 후 지급 예정 (표 내 * 표시)</div>
+      <div class="stat-foot">매입처 8개사 · 13건</div>
     </div>
   </div>
 
   <section>
-    <div class="sec-head">
-      <div class="sec-title">매입현황 · 2차 2026-09-30(수)</div>
-      <div class="sec-note">매입처 8개사 · 19건</div>
-    </div>
     <div class="composition">
       <div class="comp-bar"><div class="comp-seg mat" style="width:5.0%"></div><div class="comp-seg out" style="width:95.0%"></div></div>
       <div class="comp-legend">
@@ -331,45 +213,38 @@
     <div class="tablewrap">
     <table class="dense">
       <colgroup>
-        <col style="width:13%"><col style="width:6%"><col style="width:6%"><col style="width:20%">
-        <col style="width:10%"><col style="width:10%"><col style="width:5%"><col style="width:10%">
-        <col style="width:10%"><col style="width:10%">
+        <col style="width:17.47%"><col style="width:10.26%"><col style="width:36.48%">
+        <col style="width:9.13%"><col style="width:12.69%"><col style="width:13.98%">
       </colgroup>
       <thead>
-        <tr><th>매입처</th><th>구분</th><th>투입정보</th><th>프로젝트명</th><th>계약금액</th><th>당월지급액</th><th>지급률</th><th>VAT</th><th>실지급액</th><th>잔액</th></tr>
+        <tr><th>매입처</th><th>구분</th><th>프로젝트명</th><th>당월지급액</th><th>지급률(당월포함)</th><th>실지급액(VAT포함)</th></tr>
       </thead>
       <tbody>
-        <tr class="grp-start"><td class="vendor" rowspan="7">주식회사 온시스템즈</td><td class="tag">외주비</td><td class="person">유영석</td><td class="proj">삼성전기 MES 3.0 시스템 ITO(컴포넌트사업부)</td><td>76,500,000</td><td>8,500,000</td><td class="pct">78%</td><td>850,000</td><td>9,350,000</td><td>17,000,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">최규석</td><td class="proj">삼성전기 MES 3.0 시스템 ITO(컴포넌트사업부)</td><td>73,800,000</td><td>8,200,000</td><td class="pct">78%</td><td>820,000</td><td>9,020,000</td><td>16,400,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">장보광</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(TC)</td><td>106,800,000</td><td>8,900,000</td><td class="pct">67%</td><td>890,000</td><td>9,790,000</td><td>35,600,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">유재규</td><td class="proj">삼성전기 EMS/HEM 운영(2026)</td><td>96,000,000</td><td>8,000,000</td><td class="pct">67%</td><td>800,000</td><td>8,800,000</td><td>32,000,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">황승보</td><td class="proj">2026년 ASM 프로젝트 수행</td><td>39,800,000</td><td>10,000,000</td><td class="pct">88%</td><td>1,000,000</td><td>11,000,000</td><td>4,800,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">기타</td><td class="proj">2026년 ASM 프로젝트 수행</td><td>59,565,000</td><td>18,500,000</td><td class="pct">31%</td><td>1,850,000</td><td>20,350,000</td><td>41,065,000</td></tr>
-        <tr class="flag" style="background:#fbeceb"><td class="tag" style="background:#fbeceb">외주비(T)</td><td class="person" style="background:#fbeceb">기타</td><td class="proj" style="background:#fbeceb">주영메카트로닉스 멕시코공장 MES 구축(외주) *</td><td style="background:#fbeceb">285,000,000</td><td style="background:#fbeceb">114,000,000</td><td class="pct" style="background:#fbeceb">70%</td><td style="background:#fbeceb">11,400,000</td><td style="background:#fbeceb">125,400,000</td><td style="background:#fbeceb">85,500,000</td></tr>
+        <tr class="grp-start"><td class="vendor" rowspan="5">주식회사 온시스템즈</td><td class="tag">외주비</td><td class="proj">삼성전기 MES 3.0 시스템 ITO(컴포넌트사업부)</td><td>16,700,000</td><td class="pct">78%</td><td class="real">18,370,000</td></tr>
+        <tr><td class="tag">외주비</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(TC)</td><td>8,900,000</td><td class="pct">67%</td><td class="real">9,790,000</td></tr>
+        <tr><td class="tag">외주비</td><td class="proj">삼성전기 EMS/HEM 운영(2026)</td><td>8,000,000</td><td class="pct">67%</td><td class="real">8,800,000</td></tr>
+        <tr><td class="tag">외주비</td><td class="proj">2026년 ASM 프로젝트 수행</td><td>28,500,000</td><td class="pct">54%</td><td class="real">31,350,000</td></tr>
+        <tr class="flag"><td class="tag">외주비(T)</td><td class="proj">주영메카트로닉스 멕시코공장 MES 구축(외주) *</td><td>114,000,000</td><td class="pct">70%</td><td class="real">125,400,000</td></tr>
 
-        <tr class="grp-start"><td class="vendor" rowspan="2">상승솔루션 주식회사</td><td class="tag">외주비</td><td class="person">임정규</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(TC)</td><td>99,600,000</td><td>8,300,000</td><td class="pct">67%</td><td>830,000</td><td>9,130,000</td><td>33,200,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">조원진</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(EES)</td><td>123,600,000</td><td>10,300,000</td><td class="pct">67%</td><td>1,030,000</td><td>11,330,000</td><td>41,200,000</td></tr>
+        <tr class="grp-start"><td class="vendor" rowspan="2">상승솔루션 주식회사</td><td class="tag">외주비</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(TC)</td><td>8,300,000</td><td class="pct">67%</td><td class="real">9,130,000</td></tr>
+        <tr><td class="tag">외주비</td><td class="proj">삼성전기 전사 2026년 TC/EES 운영(EES)</td><td>10,300,000</td><td class="pct">67%</td><td class="real">11,330,000</td></tr>
 
-        <tr class="grp-start"><td class="vendor">주식회사 엔티아이피</td><td class="tag">외주비</td><td class="person">이정호</td><td class="proj">삼성전기 MES 3.0 시스템 ITO(컴포넌트사업부)</td><td>59,400,000</td><td>6,600,000</td><td class="pct">89%</td><td>660,000</td><td>7,260,000</td><td>6,600,000</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 엔티아이피</td><td class="tag">외주비</td><td class="proj">삼성전기 MES 3.0 시스템 ITO(컴포넌트사업부)</td><td>6,600,000</td><td class="pct">89%</td><td class="real">7,260,000</td></tr>
 
-        <tr class="grp-start"><td class="vendor" rowspan="4">주식회사 드림시스</td><td class="tag">외주비</td><td class="person">문성림</td><td class="proj">SPE 1라인 셋업(선투입)</td><td>57,950,000</td><td>9,500,000</td><td class="pct">67%</td><td>950,000</td><td>10,450,000</td><td>19,000,000</td></tr>
-        <tr><td class="tag">외주비</td><td class="person">박민현</td><td class="proj">SPE 1라인 셋업(선투입)</td><td>40,600,000</td><td>7,000,000</td><td class="pct">66%</td><td>700,000</td><td>7,700,000</td><td>14,000,000</td></tr>
-        <tr><td class="tag">출장비</td><td class="person">문성림</td><td class="proj">SPE 1라인 셋업(선투입)</td><td>14,886,200</td><td>3,720,000</td><td class="pct">60%</td><td>372,000</td><td>4,092,000</td><td>6,020,150</td></tr>
-        <tr><td class="tag">출장비</td><td class="person">박민현</td><td class="proj">SPE 1라인 셋업(선투입)</td><td>14,726,000</td><td>3,720,000</td><td class="pct">59%</td><td>372,000</td><td>4,092,000</td><td>6,020,150</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 드림시스</td><td class="tag">외주비·출장비</td><td class="proj">SPE 1라인 셋업(선투입)</td><td>23,940,000</td><td class="pct">65%</td><td class="real">26,334,000</td></tr>
 
-        <tr class="grp-start"><td class="vendor" rowspan="2">주식회사 나프</td><td class="tag">외주비</td><td class="person">안제완</td><td class="proj">SPE 2라인 xCS 시스템셋업</td><td>44,756,000</td><td>9,400,000</td><td class="pct">68%</td><td>940,000</td><td>10,340,000</td><td>14,100,000</td></tr>
-        <tr><td class="tag">출장비</td><td class="person">안제완</td><td class="proj">SPE 2라인 xCS 시스템셋업</td><td>17,520,000</td><td>3,720,000</td><td class="pct">69%</td><td>372,000</td><td>4,092,000</td><td>5,400,000</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 나프</td><td class="tag">외주비·출장비</td><td class="proj">SPE 2라인 xCS 시스템셋업</td><td>13,120,000</td><td class="pct">69%</td><td class="real">14,432,000</td></tr>
 
-        <tr class="grp-start"><td class="vendor">주식회사 지에스아이티엠</td><td class="tag">외주비</td><td class="person">기타</td><td class="proj">피플웍스 IL공장 서버 용량 추가 증설 지원</td><td>4,500,000</td><td>4,500,000</td><td class="pct">100%</td><td>450,000</td><td>4,950,000</td><td>-</td></tr>
-        <tr class="grp-start flag" style="background:#fbeceb"><td class="vendor" style="background:#fbeceb">주식회사 콘웰</td><td class="tag" style="background:#fbeceb">재료비</td><td class="person" style="background:#fbeceb">기타</td><td class="proj" style="background:#fbeceb">풀무원 미국법인(Gilroy공장) DSF 시스템 구축 *</td><td style="background:#fbeceb">2,800,000</td><td style="background:#fbeceb">2,800,000</td><td class="pct" style="background:#fbeceb">100%</td><td style="background:#fbeceb">280,000</td><td style="background:#fbeceb">3,080,000</td><td style="background:#fbeceb">-</td></tr>
-        <tr class="grp-start flag" style="background:#fbeceb"><td class="vendor" style="background:#fbeceb">주식회사 에쎄테크놀로지</td><td class="tag" style="background:#fbeceb">재료비</td><td class="person" style="background:#fbeceb">기타</td><td class="proj" style="background:#fbeceb">대한오토텍 디지털트윈 모니터링 레이아웃 추가 *</td><td style="background:#fbeceb">16,000,000</td><td style="background:#fbeceb">10,000,000</td><td class="pct" style="background:#fbeceb">62%</td><td style="background:#fbeceb">1,000,000</td><td style="background:#fbeceb">11,000,000</td><td style="background:#fbeceb">6,000,000</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 지에스아이티엠</td><td class="tag">외주비</td><td class="proj">피플웍스 IL공장 서버 용량 추가 증설 지원</td><td>4,500,000</td><td class="pct">100%</td><td class="real">4,950,000</td></tr>
+        <tr class="grp-start flag"><td class="vendor">주식회사 콘웰</td><td class="tag">재료비</td><td class="proj">풀무원 미국법인(Gilroy공장) DSF 시스템 구축 *</td><td>2,800,000</td><td class="pct">100%</td><td class="real">3,080,000</td></tr>
+        <tr class="grp-start flag"><td class="vendor">주식회사 에쎄테크놀로지</td><td class="tag">재료비</td><td class="proj">대한오토텍 디지털트윈 모니터링 레이아웃 추가 *</td><td>10,000,000</td><td class="pct">62%</td><td class="real">11,000,000</td></tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="5">합계</td><td>255,660,000</td><td></td><td>25,566,000</td><td>281,226,000</td><td>383,905,300</td></tr>
+        <tr><td colspan="3">합계</td><td>255,660,000</td><td></td><td class="real">281,226,000</td></tr>
       </tfoot>
     </table>
     </div>
-    <div class="footnote">* 매출 회수 미확인 건 — 고객사향 매출 채권 회수 확인 후 지급 처리 예정입니다.<br>재료비·외주비 구성비는 외주비(T)·출장비를 외주비에 합산한 기준입니다.</div>
+    <div class="footnote">* 매출 회수 미확인 건 — 고객사향 매출 채권 회수 확인 후 지급 처리 예정입니다.<br>같은 매입처의 동일 프로젝트 건은 지급액을 합산해 한 행으로 표시했습니다. 구분이 여러 개면 "외주비·출장비"처럼 함께 표시했습니다.</div>
   </section>
 
 </div>
