@@ -85,16 +85,19 @@
   section{ margin-bottom:34px; }
   section:last-child{ margin-bottom:0; }
   .composition{ margin:10px 0 16px; }
+  /* table + bgcolor attribute + non-empty cell, not a flex div with a CSS
+     background — this is the "bulletproof" pattern for colors that must
+     survive copy-paste into Word/Outlook/Notion; those paste sanitizers
+     routinely strip background-color from an empty div/span but keep it
+     on a table cell that has real content and the legacy bgcolor attr. */
   .comp-bar{
-    display:flex;
     width:100%;
-    height:10px;
+    border-collapse:collapse;
+    table-layout:fixed;
     border-radius:5px;
     overflow:hidden;
-    background:var(--line);
   }
-  .comp-seg.mat{ background:var(--mat); }
-  .comp-seg.out{ background:var(--out); }
+  .comp-bar td{ height:10px; padding:0; font-size:1px; line-height:1px; }
   .comp-legend{
     display:flex;
     gap:20px;
@@ -102,14 +105,7 @@
     font-size:12px;
     color:var(--ink-soft);
   }
-  .comp-legend .dot{
-    display:inline-block;
-    width:8px; height:8px;
-    border-radius:50%;
-    margin-right:6px;
-  }
-  .comp-legend .dot.mat{ background:var(--mat); }
-  .comp-legend .dot.out{ background:var(--out); }
+  .comp-legend .dot{ font-size:13px; margin-right:5px; }
   .comp-legend b{ color:var(--ink); font-weight:900; }
 
   .tablewrap{ overflow-x:auto; }
@@ -204,10 +200,13 @@
 
   <section>
     <div class="composition">
-      <div class="comp-bar" style="background:#e2e6ec"><div class="comp-seg mat" style="width:5.0%;background:#17395c"></div><div class="comp-seg out" style="width:95.0%;background:#3f8f78"></div></div>
+      <table class="comp-bar"><tr>
+        <td width="5.0%" bgcolor="#17395c" style="width:5.0%;background-color:#17395c;">&nbsp;</td>
+        <td width="95.0%" bgcolor="#3f8f78" style="width:95.0%;background-color:#3f8f78;">&nbsp;</td>
+      </tr></table>
       <div class="comp-legend">
-        <span><span class="dot mat" style="background:#17395c"></span>재료비 <b>14,080,000원</b> (5.0%)</span>
-        <span><span class="dot out" style="background:#3f8f78"></span>외주비 <b>267,146,000원</b> (95.0%)</span>
+        <span><span class="dot" style="color:#17395c">●</span>재료비 <b>14,080,000원</b> (5.0%)</span>
+        <span><span class="dot" style="color:#3f8f78">●</span>외주비 <b>267,146,000원</b> (95.0%)</span>
       </div>
     </div>
     <div class="tablewrap">
