@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>2026년 8월 개인경비 지급 보고</title>
+<style>
+  /* Self-contained: no external font/network dependency, so alignment and
+     line spacing render identically offline, in any browser, and when
+     pasted into Word/Outlook/HWP. */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: '맑은 고딕', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
+    color: #232833;
+    background: #ffffff;
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-text-size-adjust: 100%;
+  }
+  table { border-collapse: collapse; border-spacing: 0; }
+  td, th { line-height: 1.4; vertical-align: middle; }
+  p, div { line-height: 1.4; }
+
+  .page {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 44px 50px;
+  }
+  h1.title {
+    font-size: 25px;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.3px;
+    color: #232833;
+  }
+  .subtitle {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #9196a0;
+    margin: 0 0 14px 0;
+  }
+  .subtitle .sep { margin: 0 6px; color: #ccced3; }
+
+  .head-rule {
+    border: none;
+    border-top: 3px solid #232833;
+    margin: 0 0 22px 0;
+    height: 0;
+  }
+
+  /* ---- highlight box (table for cross-renderer reliability) ---- */
+  .headline-box {
+    width: 100%;
+    background: #eef5f5;
+    border-left: 4px solid #175e63;
+    margin-bottom: 24px;
+  }
+  .headline-box td {
+    padding: 18px 22px;
+  }
+  .headline-box .line1 {
+    font-size: 15.5px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #232833;
+  }
+  .headline-box .line1 .amt {
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: 700;
+    color: #175e63;
+    margin: 0 1px;
+  }
+  .headline-box .line2 {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #6b7178;
+    margin-top: 5px;
+  }
+
+  /* ---- stat row (table layout: guarantees equal-height columns & vertical dividers everywhere) ---- */
+  .stat-row {
+    width: 100%;
+    margin-bottom: 28px;
+    table-layout: fixed;
+  }
+  .stat-row td {
+    width: 33.333%;
+    padding: 6px 22px 2px;
+    border-right: 2px solid #d8dbe1;
+    vertical-align: top;
+  }
+  .stat-row td:first-child { padding-left: 0; }
+  .stat-row td:last-child { border-right: none; }
+  .stat-label {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #5b6070;
+    margin-bottom: 7px;
+  }
+  .stat-value {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #232833;
+    white-space: nowrap;
+  }
+  .stat-value.up { color: #b3261e; }
+  .stat-value.down { color: #1a56a8; }
+  .stat-sub {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #9196a0;
+    white-space: nowrap;
+  }
+
+  .section {
+    margin-bottom: 24px;
+  }
+  .section-head {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .section-head td {
+    padding: 0;
+    vertical-align: bottom;
+  }
+  .section-title {
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 700;
+    color: #232833;
+    white-space: nowrap;
+  }
+  .section-num {
+    color: #175e63;
+    font-weight: 700;
+    margin-right: 7px;
+  }
+  .section-note {
+    font-size: 11px;
+    line-height: 1.9;
+    color: #9196a0;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .datatable {
+    width: 100%;
+    font-size: 12.5px;
+  }
+  .datatable th {
+    color: #232833;
+    font-weight: 700;
+    text-align: right;
+    padding: 9px 10px;
+    border-top: 2.5px solid #3c4350;
+    border-bottom: 2.5px solid #3c4350;
+    white-space: nowrap;
+  }
+  .datatable th:first-child { text-align: left; }
+  .datatable td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e3e5e9;
+    text-align: right;
+    color: #333844;
+    white-space: nowrap;
+  }
+  .datatable td:first-child { text-align: left; }
+  .datatable tbody tr:last-child td { border-bottom: none; }
+  .datatable tbody tr.total-row td {
+    font-weight: 700;
+    border-top: 2.5px solid #3c4350;
+    border-bottom: 1.5px solid #3c4350;
+    color: #232833;
+  }
+  .datatable.shaded tbody tr.total-row td { background: #f7f8fa; }
+  .datatable.shaded th:last-child { text-align: center; }
+  .datatable td.usage { text-align: center; color: #444a56; white-space: normal; font-weight: 400; }
+  .datatable tbody tr.total-row td.usage { font-weight: 700; }
+  .datatable td.up { color: #b3261e; }
+  .datatable td.down { color: #1a56a8; }
+
+  .bullets { width: 100%; }
+  .bullets td {
+    padding: 9px 0 9px 17px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #333844;
+    position: relative;
+  }
+  .bullets tr + tr td { border-top: 1px dashed #d8dbe1; }
+  .bullets .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    margin-right: 10px;
+    background: #175e63;
+  }
+  .bullets b { font-weight: 700; color: #232833; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1 class="title">2026년 8월 개인경비 지급 보고</h1>
+  <div class="subtitle">개인카드 · 일비 통합<span class="sep">|</span>작성일 2026-09-07</div>
+  <hr class="head-rule">
+
+  <table class="headline-box"><tr><td>
+    <div class="line1">8월 개인경비 <span class="amt">75,432,858원</span>을 9월 10일(목) 지급 예정입니다.</div>
+    <div class="line2">당월 발생 72,767,388원  +  전월 이월 2,665,470원(지연상신 13명분)</div>
+  </td></tr></table>
+
+  <table class="stat-row"><tr>
+    <td>
+      <div class="stat-label">전월 대비</div>
+      <div class="stat-value up">▲ 6,176,330원</div>
+      <div class="stat-sub">7월 69,256,528원 → 8.9% 증가</div>
+    </td>
+    <td>
+      <div class="stat-label">전년 동월 대비</div>
+      <div class="stat-value down">▼ 17,979,404원</div>
+      <div class="stat-sub">'25.8월 93,412,262원 → 19.2% 감소</div>
+    </td>
+    <td>
+      <div class="stat-label">연간 누계 (1~8월)</div>
+      <div class="stat-value">524,902,521원</div>
+      <div class="stat-sub">전년 동기 대비 ▲8,252,009원 (+1.6%)</div>
+    </td>
+  </tr></table>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">01</span>부문별 지급 현황</td>
+      <td class="section-note">당월 발생 기준 (단위: 원)</td>
+    </tr></table>
+    <table class="datatable shaded">
+      <thead>
+        <tr><th>부문</th><th>인원</th><th>지급액</th><th>비중</th><th>주요 사용 내역</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AX서비스부문</td><td>54명</td><td>36,994,507</td><td>50.8%</td><td class="usage">출장일비 29,000,000 · 실비청구 4,044,420</td></tr>
+        <tr><td>S&amp;S서비스부문</td><td>74명</td><td>32,423,943</td><td>44.6%</td><td class="usage">출장일비 19,903,750 · 복리후생비 5,400,000</td></tr>
+        <tr><td>M.AX솔루션연구소</td><td>15명</td><td>1,794,930</td><td>2.5%</td><td class="usage">여비교통비 · 출장일비</td></tr>
+        <tr><td>사업본부</td><td>6명</td><td>698,089</td><td>1.0%</td><td class="usage">통신비 · 여비교통비</td></tr>
+        <tr><td>제품기획마케팅본부</td><td>5명</td><td>422,989</td><td>0.6%</td><td class="usage">통신비</td></tr>
+        <tr><td>경영본부</td><td>5명</td><td>372,660</td><td>0.5%</td><td class="usage">통신비</td></tr>
+        <tr><td>해외법인</td><td>1명</td><td>60,270</td><td>0.1%</td><td class="usage">통신비</td></tr>
+        <tr class="total-row"><td>당월 발생 합계</td><td>160명</td><td>72,767,388</td><td>100.0%</td><td class="usage">현장 부문(AX·S&amp;S)이 전체의 95.4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">02</span>항목별 지급 현황</td>
+      <td class="section-note">지급 기준, 이월 포함 (단위: 원)</td>
+    </tr></table>
+    <table class="datatable" style="table-layout: fixed;">
+      <colgroup>
+        <col style="width: 16%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+      </colgroup>
+      <thead>
+        <tr><th>항목</th><th>8월</th><th>7월</th><th>전월 대비</th><th>전년 동월</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>출장일비</td><td>50,093,750</td><td>44,647,500</td><td class="up">▲ 5,446,250</td><td>73,084,500</td></tr>
+        <tr><td>통신비</td><td>5,831,236</td><td>5,386,690</td><td class="up">▲ 444,546</td><td>5,017,977</td></tr>
+        <tr><td>복리후생비</td><td>5,400,000</td><td>4,872,580</td><td class="up">▲ 527,420</td><td>4,920,000</td></tr>
+        <tr><td>여비교통비</td><td>5,205,172</td><td>4,833,788</td><td class="up">▲ 371,384</td><td>6,424,195</td></tr>
+        <tr><td>실비청구</td><td>5,177,420</td><td>5,922,250</td><td class="down">▼ 744,830</td><td>31,400</td></tr>
+        <tr><td>지급수수료</td><td>3,529,480</td><td>3,423,220</td><td class="up">▲ 106,260</td><td>3,609,390</td></tr>
+        <tr><td>소모품비</td><td>97,800</td><td>-</td><td class="up">▲ 97,800</td><td>309,800</td></tr>
+        <tr><td>프로젝트운영비</td><td>63,000</td><td>-</td><td class="up">▲ 63,000</td><td>15,000</td></tr>
+        <tr><td>사업부활동비</td><td>35,000</td><td>170,500</td><td class="down">▼ 135,500</td><td>-</td></tr>
+        <tr class="total-row"><td>합계</td><td>75,432,858</td><td>69,256,528</td><td class="up">▲ 6,176,330</td><td>93,412,262</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">03</span>특이사항</td>
+      <td class="section-note">&nbsp;</td>
+    </tr></table>
+    <table class="bullets">
+      <tr><td><span class="dot"></span><b>출장일비, 3개월 만에 증가 전환</b> — 5월 50,490,000원 → 6월 48,581,250원 → 7월 44,647,500원으로 3개월 연속 감소하다, 8월 50,093,750원으로 ▲5,446,250원(+12.2%) 반등. 풀무원 미국법인(Gilroy공장) DSF 시스템 구축(AX26202002) 해외출장에 따른 일비 증가가 주요 원인.</td></tr>
+      <tr><td><span class="dot"></span><b>지연상신 13명분 2,665,470원</b> — 전월(8명분 2,015,050원) 대비 인원·금액 모두 증가.</td></tr>
+      <tr><td><span class="dot"></span><b>전년 동월 대비 19.2% 감소</b>했으나 연간 누계(1~8)는 524,902,521원으로 전년 동기 대비 여전히 ▲8,252,009원(+1.6%) 증가 추세 유지.</td></tr>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
