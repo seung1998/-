@@ -199,10 +199,11 @@
     font-size:12px;
     padding:9px 10px;
     border-bottom:1px solid var(--line-strong);
-    white-space:nowrap;
+    white-space:normal;
+    word-break:keep-all;
   }
-  thead th:nth-child(-n+4){ text-align:left; }
-  thead th:nth-child(4){ text-align:center; }
+  thead th:nth-child(-n+3){ text-align:left; }
+  thead th:nth-child(2), thead th:nth-child(3){ text-align:center; }
   tbody td{
     padding:9px 10px;
     border-bottom:1px solid var(--line);
@@ -270,57 +271,37 @@
 
   @media print{
     body{ padding:0; background:#fff; }
-    .sheet{ border:none; border-radius:0; max-width:none; padding:28px 34px; }
+    .sheet{ border:none; border-radius:0; max-width:none; padding:16px 34px; }
     thead{ display:table-header-group; }
     tr{ break-inside:avoid; page-break-inside:avoid; }
     section{ break-inside:avoid-page; }
     .stats, .headline{ break-inside:avoid; }
+    /* compact vertical rhythm so a short report fits on a single page */
+    h1{ font-size:24px; margin-bottom:4px; }
+    .subtitle{ margin-bottom:14px; }
+    .headline{ padding:12px 20px; margin-bottom:14px; }
+    .headline-sub{ margin-top:5px; }
+    .stats{ margin-bottom:16px; gap:10px; }
+    .stat{ padding:10px 14px; }
+    .stat-label{ margin-bottom:4px; }
+    .stat-foot{ margin-top:4px; }
+    section{ margin-bottom:16px; }
+    .sec-head{ padding-bottom:5px; }
+    .composition{ margin:6px 0 10px; }
   }
 </style>
 
 <div class="sheet">
 
-  <div class="meta-row">
-    <span>외주비 / 재료비 지급 보고 · 1차</span>
-    <span>작성일 2026-09-08</span>
-  </div>
-  <h1>2026년 9월 외주비·재료비 지급 보고 (1차)</h1>
-  <p class="subtitle">지급일 2026-09-10(목)</p>
-
-  <div class="headline">
-    <div class="headline-body">
-      <div class="headline-lead">
-        1차(9/10) 외주비·재료비 지급액 <b>903,386,146원</b>을 집행 예정
-      </div>
-      <div class="headline-sub">
-        매입처 5개사 · 5건<span class="div">|</span>재료비 763,290,000원(84.5%) · 외주비 140,096,146원(15.5%)
-      </div>
-    </div>
-  </div>
-
-  <div class="stats">
+  <div class="stats" style="grid-template-columns:max-content; justify-content:start;">
     <div class="stat">
-      <div class="stat-label">당월 지급합계 (VAT포함)</div>
+      <div class="stat-label">1차 지급 · 9/10(목)</div>
       <div class="stat-value">903,386,146<small>원</small></div>
-      <div class="stat-foot">공급가액 821,260,133원 + VAT 82,126,013원</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">매입처</div>
-      <div class="stat-value">5개사<small>· 5건</small></div>
-      <div class="stat-foot">1개 매입처당 1개 프로젝트</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">최대 지급처</div>
-      <div class="stat-value">헤이즐시스<small></small></div>
-      <div class="stat-foot">763,290,000원 · 전체의 84.5%</div>
+      <div class="stat-foot">매입처 5개사 · 5건</div>
     </div>
   </div>
 
   <section>
-    <div class="sec-head">
-      <div class="sec-title">매입현황 · 1차 2026-09-10(목)</div>
-      <div class="sec-note">매입처 5개사 · 5건</div>
-    </div>
     <div class="composition">
       <div class="comp-bar"><div class="comp-seg mat" style="width:84.5%"></div><div class="comp-seg out" style="width:15.5%"></div></div>
       <div class="comp-legend">
@@ -331,26 +312,24 @@
     <div class="tablewrap">
     <table class="dense">
       <colgroup>
-        <col style="width:13%"><col style="width:6%"><col style="width:6%"><col style="width:20%">
-        <col style="width:10%"><col style="width:10%"><col style="width:5%"><col style="width:10%">
-        <col style="width:10%"><col style="width:10%">
+        <col style="width:15.5%"><col style="width:8%"><col style="width:38%">
+        <col style="width:10%"><col style="width:13.5%"><col style="width:15%">
       </colgroup>
       <thead>
-        <tr><th>매입처</th><th>구분</th><th>투입정보</th><th>프로젝트명</th><th>계약금액</th><th>당월지급액</th><th>지급률</th><th>VAT</th><th>실지급액</th><th>잔액</th></tr>
+        <tr><th>매입처</th><th>구분</th><th>프로젝트명</th><th>당월지급액</th><th>지급률(당월포함)</th><th>실지급액(VAT포함)</th></tr>
       </thead>
       <tbody>
-        <tr class="grp-start"><td class="vendor">곰소프트</td><td class="tag">외주비</td><td class="person">이승환</td><td class="proj">삼성SDI 2026년 내재화 시스템 운영</td><td>97,200,000</td><td>8,100,000</td><td class="pct">67%</td><td>810,000</td><td>8,910,000</td><td>32,400,000</td></tr>
-        <tr class="grp-start"><td class="vendor">㈜에스오피레이크</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">피플웍스 미국공장 ESS Pack/LINK라인 MES 시스템 운영</td><td>673,180,800</td><td>112,196,800</td><td class="pct">78%</td><td>11,219,680</td><td>123,416,480</td><td>142,060,000</td></tr>
-        <tr class="grp-start"><td class="vendor">주식회사 아이웍스</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>12,000,000</td><td>1,000,000</td><td class="pct">25%</td><td>100,000</td><td>1,100,000</td><td>9,000,000</td></tr>
-        <tr class="grp-start"><td class="vendor">신일전산(주)</td><td class="tag">외주비(T)</td><td class="person">기타</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>72,760,000</td><td>6,063,333</td><td class="pct">24%</td><td>606,333</td><td>6,669,666</td><td>54,570,001</td></tr>
-        <tr class="grp-start"><td class="vendor">주식회사 헤이즐시스</td><td class="tag">재료비</td><td class="person">기타</td><td class="proj">서진시스템 AT공장 ESS Pack라인 MES 시스템 구축(1차)</td><td>771,000,000</td><td>693,900,000</td><td class="pct">100%</td><td>69,390,000</td><td>763,290,000</td><td>-</td></tr>
+        <tr class="grp-start"><td class="vendor">곰소프트</td><td class="tag">외주비</td><td class="proj">삼성SDI 2026년 내재화 시스템 운영</td><td>8,100,000</td><td class="pct">67%</td><td>8,910,000</td></tr>
+        <tr class="grp-start"><td class="vendor">㈜에스오피레이크</td><td class="tag">외주비(T)</td><td class="proj">피플웍스 미국공장 ESS Pack/LINK라인 MES 시스템 운영</td><td>112,196,800</td><td class="pct">78%</td><td>123,416,480</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 아이웍스</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>1,000,000</td><td class="pct">25%</td><td>1,100,000</td></tr>
+        <tr class="grp-start"><td class="vendor">신일전산(주)</td><td class="tag">외주비(T)</td><td class="proj">한국항공우주산업 KAPS/A350 CIM 유지보수</td><td>6,063,333</td><td class="pct">24%</td><td>6,669,666</td></tr>
+        <tr class="grp-start"><td class="vendor">주식회사 헤이즐시스</td><td class="tag">재료비</td><td class="proj">서진시스템 AT공장 ESS Pack라인 MES 시스템 구축(1차)</td><td>693,900,000</td><td class="pct">100%</td><td>763,290,000</td></tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="5">합계</td><td>821,260,133</td><td></td><td>82,126,013</td><td>903,386,146</td><td>238,030,001</td></tr>
+        <tr><td colspan="3">합계</td><td>821,260,133</td><td></td><td>903,386,146</td></tr>
       </tfoot>
     </table>
     </div>
-    <div class="footnote">재료비·외주비 구성비는 외주비(T)를 외주비에 합산한 기준입니다.</div>
   </section>
 
 </div>
