@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>2026년 8월 법인카드 사용내역 보고</title>
+<style>
+  /* Self-contained: no external font/network dependency, so alignment and
+     line spacing render identically offline, in any browser, and when
+     pasted into Word/Outlook/HWP. */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: '맑은 고딕', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
+    color: #232833;
+    background: #ffffff;
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-text-size-adjust: 100%;
+  }
+  table { border-collapse: collapse; border-spacing: 0; }
+  td, th { line-height: 1.4; vertical-align: middle; }
+  p, div { line-height: 1.4; }
+
+  .page {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 44px 50px;
+  }
+  h1.title {
+    font-size: 25px;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.3px;
+    color: #232833;
+  }
+  .subtitle {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #9196a0;
+    margin: 0 0 14px 0;
+  }
+  .subtitle .sep { margin: 0 6px; color: #ccced3; }
+
+  .head-rule {
+    border: none;
+    border-top: 3px solid #232833;
+    margin: 0 0 22px 0;
+    height: 0;
+  }
+
+  /* ---- highlight box (table for cross-renderer reliability) ---- */
+  .headline-box {
+    width: 100%;
+    background: #eef5f5;
+    border-left: 4px solid #175e63;
+    margin-bottom: 24px;
+  }
+  .headline-box td {
+    padding: 18px 22px;
+  }
+  .headline-box .line1 {
+    font-size: 15.5px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #232833;
+  }
+  .headline-box .line1 .amt {
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: 700;
+    color: #175e63;
+    margin: 0 1px;
+  }
+  .headline-box .line2 {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #6b7178;
+    margin-top: 5px;
+  }
+
+  /* ---- stat row (table layout: guarantees equal-height columns & vertical dividers everywhere) ---- */
+  .stat-row {
+    width: 100%;
+    margin-bottom: 28px;
+    table-layout: fixed;
+  }
+  .stat-row td {
+    width: 33.333%;
+    padding: 6px 22px 2px;
+    border-right: 2px solid #d8dbe1;
+    vertical-align: top;
+  }
+  .stat-row td:first-child { padding-left: 0; }
+  .stat-row td:last-child { border-right: none; }
+  .stat-label {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #5b6070;
+    margin-bottom: 7px;
+  }
+  .stat-value {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #232833;
+    white-space: nowrap;
+  }
+  .stat-value.up { color: #b3261e; }
+  .stat-value.down { color: #1a56a8; }
+  .stat-sub {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #9196a0;
+    white-space: nowrap;
+  }
+
+  .section {
+    margin-bottom: 24px;
+  }
+  .section-head {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .section-head td {
+    padding: 0;
+    vertical-align: bottom;
+  }
+  .section-title {
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 700;
+    color: #232833;
+    white-space: nowrap;
+  }
+  .section-num {
+    color: #175e63;
+    font-weight: 700;
+    margin-right: 7px;
+  }
+  .section-note {
+    font-size: 11px;
+    line-height: 1.9;
+    color: #9196a0;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .datatable {
+    width: 100%;
+    font-size: 12.5px;
+  }
+  .datatable th {
+    color: #232833;
+    font-weight: 700;
+    text-align: right;
+    padding: 9px 10px;
+    border-top: 2.5px solid #3c4350;
+    border-bottom: 2.5px solid #3c4350;
+    white-space: nowrap;
+  }
+  .datatable th:first-child { text-align: left; }
+  .datatable td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e3e5e9;
+    text-align: right;
+    color: #333844;
+    white-space: nowrap;
+  }
+  .datatable td:first-child { text-align: left; }
+  .datatable tbody tr:last-child td { border-bottom: none; }
+  .datatable tbody tr.total-row td {
+    font-weight: 700;
+    border-top: 2.5px solid #3c4350;
+    border-bottom: 1.5px solid #3c4350;
+    color: #232833;
+  }
+  .datatable.shaded tbody tr.total-row td { background: #f7f8fa; }
+  .datatable td.usage { text-align: left; color: #444a56; white-space: normal; font-weight: 400; }
+  .datatable th.usage { text-align: left; }
+  .datatable tbody tr.total-row td.usage { font-weight: 700; }
+  .datatable td.up { color: #b3261e; }
+  .datatable td.down { color: #1a56a8; }
+  .dept-table thead th,
+  .dept-table thead th:first-child,
+  .dept-table thead th.usage { text-align: center; }
+
+  .footnote {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #9196a0;
+    margin: 8px 2px 0;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1 class="title">2026년 8월 법인카드 사용내역 보고</h1>
+  <div class="subtitle">작성일 2026-09-11</div>
+  <hr class="head-rule">
+
+  <table class="headline-box"><tr><td>
+    <div class="line1">8월 법인카드 <span class="amt">168,944,892원</span>을 9월 23일(수) 집행 예정입니다.</div>
+    <div class="line2">사업부 142,120,666원  +  정부과제 26,824,226원</div>
+  </td></tr></table>
+
+  <table class="stat-row"><tr>
+    <td>
+      <div class="stat-label">전월 대비</div>
+      <div class="stat-value up">▲ 23,191,463원</div>
+      <div class="stat-sub">7월 145,753,429원 → 15.9% 증가</div>
+    </td>
+    <td>
+      <div class="stat-label">전년 동월 대비</div>
+      <div class="stat-value down">▼ 6,231,173원</div>
+      <div class="stat-sub">'25.8월 175,176,065원 → 3.6% 감소</div>
+    </td>
+    <td>
+      <div class="stat-label">연간 누계 (1~8월)</div>
+      <div class="stat-value">965,412,626원</div>
+      <div class="stat-sub">전년 동기 대비 ▲57,943,735원 (+6.4%)</div>
+    </td>
+  </tr></table>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">01</span>부문별 사용 현황</td>
+      <td class="section-note">사업부 사용액 기준 (단위: 원)</td>
+    </tr></table>
+    <table class="datatable shaded dept-table">
+      <thead>
+        <tr><th>부문</th><th>인원</th><th>사용액</th><th>비중</th><th class="usage">주요 사용 내역</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AX서비스부문</td><td>43명</td><td>57,099,541</td><td>40.2%</td><td class="usage">여비교통비(일반) 43,638,458 · 사업부활동비 4,949,908</td></tr>
+        <tr><td>제품기획마케팅본부</td><td>5명</td><td>14,121,456</td><td>9.9%</td><td class="usage">지급수수료 9,184,125 · 사업부활동비 2,570,531</td></tr>
+        <tr><td>사업본부</td><td>10명</td><td>12,246,450</td><td>8.6%</td><td class="usage">접대비 4,146,100 · 여비교통비(임원/영업) 3,538,195</td></tr>
+        <tr><td>S&amp;S서비스부문</td><td>26명</td><td>10,770,230</td><td>7.6%</td><td class="usage">사업부활동비 4,717,455 · 프로젝트운영비 2,707,500</td></tr>
+        <tr><td>경영본부</td><td>6명</td><td>3,468,074</td><td>2.4%</td><td class="usage">사업부활동비 1,249,500 · 접대비 961,000</td></tr>
+        <tr><td>M.AX솔루션연구소</td><td>12명</td><td>3,199,492</td><td>2.3%</td><td class="usage">사업부활동비 1,219,314 · 행사비 780,000</td></tr>
+        <tr><td>CEO·대외협력</td><td>2명</td><td>2,905,292</td><td>2.0%</td><td class="usage">사업부활동비 1,732,300 · 접대비 525,000</td></tr>
+        <tr><td>전사 (공용·항공)</td><td>-</td><td>38,310,131</td><td>27.0%</td><td class="usage">여비교통비(일반) 19,038,340 · 복리후생비 11,174,000</td></tr>
+        <tr class="total-row"><td>사업부 합계</td><td>104명</td><td>142,120,666</td><td>100.0%</td><td class="usage">&nbsp;</td></tr>
+      </tbody>
+    </table>
+    <div class="footnote">* 정부과제 사용액 26,824,226원은 별도 관리 항목으로 상기 표에서 제외</div>
+  </div>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">02</span>계정별 사용 현황</td>
+      <td class="section-note">정부과제 포함 (단위: 원)</td>
+    </tr></table>
+    <table class="datatable" style="table-layout: fixed;">
+      <colgroup>
+        <col style="width: 16%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+        <col style="width: 21%">
+      </colgroup>
+      <thead>
+        <tr><th>계정과목</th><th>8월</th><th>7월</th><th>전월 대비</th><th>전년 동월</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>여비교통비(일반)</td><td>64,703,325</td><td>42,730,322</td><td class="up">▲ 21,973,003</td><td>98,384,935</td></tr>
+        <tr><td>사업부활동비</td><td>19,958,028</td><td>22,297,105</td><td class="down">▼ 2,339,077</td><td>16,090,902</td></tr>
+        <tr><td>지급수수료</td><td>13,220,567</td><td>15,298,941</td><td class="down">▼ 2,078,374</td><td>2,661,351</td></tr>
+        <tr><td>복리후생비</td><td>11,213,850</td><td>96,000</td><td class="up">▲ 11,117,850</td><td>-</td></tr>
+        <tr><td>여비교통비(임원/영업)</td><td>10,592,930</td><td>12,845,150</td><td class="down">▼ 2,252,220</td><td>10,635,737</td></tr>
+        <tr><td>접대비</td><td>6,608,500</td><td>7,589,750</td><td class="down">▼ 981,250</td><td>3,618,901</td></tr>
+        <tr><td>프로젝트운영비</td><td>6,129,523</td><td>8,219,085</td><td class="down">▼ 2,089,562</td><td>6,028,379</td></tr>
+        <tr><td>회의비</td><td>5,442,000</td><td>3,196,100</td><td class="up">▲ 2,245,900</td><td>984,780</td></tr>
+        <tr><td>소모품비</td><td>1,678,803</td><td>1,805,437</td><td class="down">▼ 126,634</td><td>15,659,721</td></tr>
+        <tr><td>행사비</td><td>1,036,000</td><td>-</td><td class="up">▲ 1,036,000</td><td>-</td></tr>
+        <tr><td>실비청구</td><td>1,018,700</td><td>1,045,200</td><td class="down">▼ 26,500</td><td>2,676,582</td></tr>
+        <tr><td>통신비</td><td>349,440</td><td>549,770</td><td class="down">▼ 200,330</td><td>818,150</td></tr>
+        <tr><td>교육훈련비</td><td>169,000</td><td>-</td><td class="up">▲ 169,000</td><td>93,949</td></tr>
+        <tr><td>경상연구개발비_과제</td><td>26,824,226</td><td>30,080,569</td><td class="down">▼ 3,256,343</td><td>17,522,678</td></tr>
+        <tr class="total-row"><td>합계</td><td>168,944,892</td><td>145,753,429</td><td class="up">▲ 23,191,463</td><td>175,176,065</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <table class="section-head"><tr>
+      <td class="section-title"><span class="section-num">03</span>예산 대비 집행 현황</td>
+      <td class="section-note">예산 통제 대상 계정 한정 (단위: 원)</td>
+    </tr></table>
+    <table class="datatable" style="table-layout: fixed;">
+      <colgroup>
+        <col style="width: 20%">
+        <col style="width: 17%">
+        <col style="width: 15%">
+        <col style="width: 17%">
+        <col style="width: 13%">
+        <col style="width: 18%">
+      </colgroup>
+      <thead>
+        <tr><th>부문</th><th>연간 예산</th><th>8월 실적</th><th>누계 (1~8월)</th><th>사용률</th><th>잔여 예산</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>사업본부</td><td>434,640,000</td><td>26,547,502</td><td>219,638,961</td><td>50.5%</td><td>215,001,039</td></tr>
+        <tr><td>경영본부</td><td>43,480,000</td><td>2,750,521</td><td>22,590,482</td><td>52.0%</td><td>20,889,518</td></tr>
+        <tr><td>M.AX솔루션연구소</td><td>45,040,000</td><td>2,582,104</td><td>18,993,327</td><td>42.2%</td><td>26,046,673</td></tr>
+        <tr><td>제품기획마케팅본부</td><td>43,160,000</td><td>3,901,331</td><td>22,158,065</td><td>51.3%</td><td>21,001,935</td></tr>
+        <tr><td>대표이사·대외협력</td><td>84,000,000</td><td>2,476,800</td><td>37,080,851</td><td>44.1%</td><td>46,919,149</td></tr>
+        <tr class="total-row"><td>합계</td><td>650,320,000</td><td>38,258,258</td><td>320,461,686</td><td>49.3%</td><td>329,858,314</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
